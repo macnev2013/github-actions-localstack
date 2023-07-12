@@ -1,11 +1,25 @@
 #!/bin/bash
 
-function install_awslocal() {
+function check_awslocal() {
     which awslocal
     if [ $? -ne 0 ]; then
         echo "awslocal is not installed. Please install it first."
-        pip install awscli-local
     fi
+    exit 0
+}
+
+function install_awslocal() {
+    pip install awscli-local
+    awslocal --version
+    if [ $? -ne 0 ]; then
+        echo "awslocal is not installed. Please install it first."
+    fi
+    exit 0
+}
+
+function main() {
+    check_awslocal
+    install_awslocal
 }
 
 main
