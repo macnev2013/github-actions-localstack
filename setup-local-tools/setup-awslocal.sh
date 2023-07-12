@@ -4,8 +4,10 @@ function check_awslocal() {
     which awslocal
     if [ $? -ne 0 ]; then
         echo "awslocal is not installed. Please install it first."
+    else
+        echo "awslocal is already installed."
+        exit 0
     fi
-    exit 0
 }
 
 function install_awslocal() {
