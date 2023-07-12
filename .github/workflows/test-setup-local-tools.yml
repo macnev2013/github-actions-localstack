@@ -1,4 +1,4 @@
-name: test-setup-local-tools
+name: Setup Local Tools
 on: [ push, pull_request ]
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
       - name: Setup terraform-local
         uses: ./setup-local-tools
         with:
-          terraform-local: 'true'
+          tflocal: 'true'
         
       - name: Test tflocal version
         run: |

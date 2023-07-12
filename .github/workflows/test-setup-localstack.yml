@@ -1,4 +1,4 @@
-name: test-setup-localstack
+name: Setup LocalStack
 on: [ push, pull_request ]
 
 jobs:
