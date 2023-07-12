@@ -24,7 +24,7 @@ runs:
   using: "composite"
   steps:
     - id: setup-localstack
-      run: setup-localstack
+      run: setup-localstack.sh
       shell: bash
       env:
         IMAGE_TAG: "${{ inputs.image-tag }}"
