@@ -45,7 +45,7 @@ runs:
           } else {
             message = 'Unable to determine deployment status.'
           }
-          github.issues.createComment({
+          await github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
