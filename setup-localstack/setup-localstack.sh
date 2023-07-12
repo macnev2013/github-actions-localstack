@@ -38,8 +38,8 @@ function start_localstack() {
     fi
 
     # Start LocalStack
-    ${CONFIGURATION} localstack config show
-    ${CONFIGURATION} localstack start -d
+    eval "${CONFIGURATION} localstack config show"
+    eval "${CONFIGURATION} localstack start -d"
     localstack wait -t 60
 
     if [ $? -ne 0 ]; then
