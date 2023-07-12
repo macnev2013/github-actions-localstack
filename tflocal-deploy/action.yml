@@ -34,7 +34,7 @@ runs:
     - id: pr-comment
       uses: actions/github-script@v3
       with:
-        github-token: ${{ input.github-token }}
+        github-token: ${{ inputs.github-token }}
         script: |
           const tfDeploymentStatus = "${{ steps.tf-deploy.outcome }}"
           let message
