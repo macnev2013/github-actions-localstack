@@ -1,0 +1,45 @@
+name: 'Setup Terraform Local'
+description: 'Sets up Terraform Local in your GitHub Actions workflow.'
+author: 'LocalStack Team'
+
+branding:
+  icon: 'code'
+  color: 'white'
+
+inputs:
+  terraform-version:
+    description: 'Terraform version to use'
+    required: true
+    default: 'latest'
+  use-pro:
+    description: 'Whether to use LocalStack Pro (requires a valid API key)'
+    required: false
+    default: 'false'
+  configuration:
+    description: 'Configuration variables to use for LocalStack'
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - 
+      run: |
+        pip install pyopenssl -U
+
+        if [ "$USE_PRO" = true ]; then
+          docker pull localstack/localstack-pro:"$IMAGE_TAG"
+          CONFIGURATION="$CONFIGURATION DNS_ADDRESS=0"
+        else
+          docker pull localstack/localstack:"$IMAGE_TAG"
+        fi
+
+        pip install localstack
+        eval "${CONFIGURATION} localstack config show"
+        eval "${CONFIGURATION} localstack start -d"
+        localstack wait -t 30
+      shell: bash
+      env:
+        IMAGE_TAG: "${{ inputs.image-tag }}"
+        USE_PRO: "${{ inputs.use-pro }}"
+        CONFIGURATION: "${{ inputs.configuration }}"

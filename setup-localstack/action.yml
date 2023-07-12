@@ -23,21 +23,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - 
-      run: |
-        pip install pyopenssl -U
-
-        if [ "$USE_PRO" = true ]; then
-          docker pull localstack/localstack-pro:"$IMAGE_TAG"
-          CONFIGURATION="$CONFIGURATION DNS_ADDRESS=0"
-        else
-          docker pull localstack/localstack:"$IMAGE_TAG"
-        fi
-
-        pip install localstack
-        eval "${CONFIGURATION} localstack config show"
-        eval "${CONFIGURATION} localstack start -d"
-        localstack wait -t 30
+    - id: setup-localstack
+      run: setup-localstack
       shell: bash
       env:
         IMAGE_TAG: "${{ inputs.image-tag }}"
