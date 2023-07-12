@@ -52,3 +52,6 @@ runs:
         cli_config_credentials_token: ${{ inputs.terraform-cli_config_credentials_token }}
         terraform_wrapper: ${{ inputs.terraform_wrapper }}
 
+    - run: ./setup-local-tools/setup-terraform-local.sh
+      if: ${{ inputs.terraform-local == 'true' }}
+      shell: bash

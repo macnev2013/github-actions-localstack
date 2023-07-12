@@ -2,7 +2,7 @@ name: test-setup-localstack
 on: [ push, pull_request ]
 
 jobs:
-  localstack-action-test:
+  setup-localstack-action-test:
     name: 'Test Setup LocalStack GitHub Action'
     runs-on: ubuntu-latest
     steps:

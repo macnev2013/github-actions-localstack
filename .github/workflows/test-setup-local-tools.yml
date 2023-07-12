@@ -1,9 +1,9 @@
-name: test-setup-localstack
+name: test-setup-local-tools
 on: [ push, pull_request ]
 
 jobs:
-  localstack-action-test:
-    name: 'Test Setup LocalStack GitHub Action'
+  setup-local-tools-action-test:
+    name: 'Test Setup Local Tools GitHub Action'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,3 +26,12 @@ jobs:
       - name: Test terraform version
         run: |
           terraform --version
+
+      - name: Setup terraform-local
+        uses: ./setup-local-tools
+        with:
+          terraform-local: 'true'
+        
+      - name: Test tflocal version
+        run: |
+          tflocal --version
