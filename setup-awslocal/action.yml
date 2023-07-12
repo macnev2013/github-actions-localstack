@@ -1,4 +1,4 @@
-name: 'Setup LocalStack'
+name: 'Setup AWS Local'
 description: 'Sets up LocalStack CLI in your GitHub Actions workflow.'
 author: 'LocalStack Team'
 
