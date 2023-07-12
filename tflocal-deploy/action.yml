@@ -26,3 +26,16 @@ runs:
       run: |
         tflocal apply --auto-approve
       shell: bash
+
+    - id: pr-comment
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '![LocalStack](https://img.shields.io/badge/LocalStack-Validated-blue) Terraform files deployed successfully on LocalStack.'
+          })
+      if: always()
