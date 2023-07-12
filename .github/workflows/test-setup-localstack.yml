@@ -18,7 +18,9 @@ jobs:
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
 
       - name: Setup awslocal
-        uses: ./setup-awslocal
+        uses: ./setup-local-tools
+        with:
+          awslocal: 'true'
 
       - name: Run Tests against LocalStack
         run: |

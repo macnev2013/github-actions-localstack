@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Function to check if LocalStack is installed
-function check_localstack_installed() {
+function install_localstack() {
     which localstack
     if [ $? -ne 0 ]; then
         echo "LocalStack is not installed. Please install it first."
@@ -52,7 +52,7 @@ function start_localstack() {
 
 # Main script
 function main() {
-    check_localstack_installed
+    install_localstack
     check_docker_installed_and_running
     start_localstack
 }
