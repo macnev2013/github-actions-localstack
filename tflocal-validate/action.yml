@@ -1,0 +1,51 @@
+name: 'tflocal deploy'
+description: 'Deploys terraform on LocalStack.'
+author: 'LocalStack Team'
+
+branding:
+  icon: 'code'
+  color: 'white'
+
+inputs:
+  setup-localstack:
+    description: 'Whether to start LocalStack'
+    required: false
+    default: 'true'
+  setup-terraform:
+    description: 'Whether to install terraform'
+    required: false
+    default: 'true'
+  setup-tflocal:
+    description: 'Whether to install tflocal'
+    required: false
+    default: 'true'
+  path:
+    description: 'Path to terraform directory'
+    required: false
+    default: 'terraform'
+
+runs:
+  using: "composite"
+  steps:
+    - id: setup-localstack
+      uses: ../setup-localstack
+      if: ${{ inputs.setup-localstack == 'true' }}
+
+    - id: setup-tflocal
+      uses: ../setup-local-tools
+      if: ${{ inputs.setup-tflocal == 'true' }}
+      with:
+        tflocal: 'true'
+        terraform: 'true'
+
+    - id: tf-init
+      working-directory: ${{ inputs.path }}
+      run: |
+        tflocal init
+      shell: bash
+
+    - id: tf-plan
+      working-directory: ${{ inputs.path }}
+      run: |
+        tflocal apply --auto-approve
+      shell: bash

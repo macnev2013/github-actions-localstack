@@ -1,0 +1,22 @@
+name: Tests for tflocal-validate
+on: [ push, pull_request ]
+
+jobs:
+  setup-local-tools-action-test:
+    name: 'Deploys Terraform Files on LocalStack'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy on LocalStack
+        uses: ./tflocal-validate
+        with:
+          path: 'etc/terraform'
+          setup-localstack: 'true'
+          setup-terraform: 'true'
+          setup-tflocal: 'true'
+          configuration: 'DEBUG=1 DEFAULT_REGION=eu-central-1'
+          image-tag: 'latest'
+          use-pro: 'true'
+        env:
+          LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
