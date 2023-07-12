@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Start LocalStack
+      - name: Setup LocalStack
         uses: ./setup-localstack
         with:
           image-tag: 'latest'
@@ -17,6 +17,9 @@ jobs:
           use-pro: 'true'
         env:
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+
+      - name: Setup awslocal
+        uses: ./setup-awslocal
 
       - name: Run Tests against LocalStack
         run: |
