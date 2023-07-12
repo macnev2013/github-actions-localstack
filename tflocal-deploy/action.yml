@@ -21,7 +21,7 @@ runs:
         tflocal init
       shell: bash
 
-    - id: tf-plan
+    - id: tf-deploy
       working-directory: ${{ inputs.path }}
       run: |
         tflocal apply --auto-approve
