@@ -11,6 +11,9 @@ inputs:
     description: 'Path to terraform directory'
     required: false
     default: 'terraform'
+  github-token:
+    description: 'GitHub token'
+    required: true
 
 runs:
   using: "composite"
@@ -30,7 +33,7 @@ runs:
     - id: pr-comment
       uses: actions/github-script@v3
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ input.github-token }}
         script: |
           github.issues.createComment({
             issue_number: context.issue.number,
@@ -38,4 +41,4 @@ runs:
             repo: context.repo.repo,
             body: '![LocalStack](https://img.shields.io/badge/LocalStack-Validated-blue) Terraform files deployed successfully on LocalStack.'
           })
-      if: always()
+      if: ${{ github.event_name == 'pull_request' }}
