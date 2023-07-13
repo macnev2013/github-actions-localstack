@@ -6,7 +6,7 @@ The LocalStack Team presents a collection of GitHub Actions to facilitate local 
 
 - [Setup LocalStack](./setup-localstack)
 - [Setup Local Tools](./setup-local-tools)
-- [tflocal deploy](./tflocal-deploy)
+- [LocalStack Terraform Deploy](./tflocal-deploy)
 
 ## Setup LocalStack
 
