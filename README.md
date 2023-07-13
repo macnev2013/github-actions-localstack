@@ -16,6 +16,6 @@ The Setup LocalStack action enables you to set up LocalStack in your GitHub Acti
 
 The Setup Local Tools action assists you in setting up several local development tools, including awslocal, terraform, and terraform-local. You can specify the versions and credentials for Terraform and whether to install a wrapper for Terraform calls. For more information, see the Setup Local Tools [README](./setup-local-tools/README.md).
 
-## tflocal deploy
+## LocalStack Terraform Deploy
 
 The tflocal deploy action allows you to deploy Terraform on LocalStack. It consists of three steps: initializing Terraform, applying the Terraform configuration, and commenting on the pull request with the status of the Terraform deployment. For more information, see the tflocal deploy [README](./tflocal-deploy/README.md).
