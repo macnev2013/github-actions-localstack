@@ -1,5 +1,5 @@
 name: Tests for tflocal-validate
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 jobs:
   tflocal-deploy-action-test:
@@ -28,3 +28,4 @@ jobs:
         uses: ./tflocal-deploy
         with:
           path: 'etc/terraform'
+          github-token: ${{ secrets.GITHUB_TOKEN }}

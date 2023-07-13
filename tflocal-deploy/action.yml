@@ -11,6 +11,9 @@ inputs:
     description: 'Path to terraform directory'
     required: false
     default: 'terraform'
+  github-token:
+    description: 'GitHub token'
+    required: true
 
 runs:
   using: "composite"
@@ -26,3 +29,25 @@ runs:
       run: |
         tflocal apply --auto-approve
       shell: bash
+      continue-on-error: true
+
+    - id: pr-comment
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const tfDeploymentStatus = "${{ steps.tf-deploy.outcome }}"
+          let message
+          if (tfDeploymentStatus === 'success') {
+            message = '![LocalStack](https://img.shields.io/badge/LocalStack-Deployed-green) Terraform files deployed successfully on LocalStack :tada:.'
+          } else if (tfDeploymentStatus === 'failure') {
+            message = '![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) Terraform files deployed successfully on LocalStack :warning:.'
+          } else {
+            message = 'Unable to determine deployment status.'
+          }
+          await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: message
+          })
+      if: ${{ github.event_name == 'pull_request' }}
