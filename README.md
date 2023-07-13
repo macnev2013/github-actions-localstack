@@ -1,4 +1,4 @@
-## LocalStack GitHub Actions
+# LocalStack GitHub Actions
 
 The LocalStack Team presents a collection of GitHub Actions to facilitate local development and testing on your GitHub Actions workflows.
 
@@ -8,11 +8,11 @@ The LocalStack Team presents a collection of GitHub Actions to facilitate local 
 - [Setup Local Tools](./setup-local-tools)
 - [tflocal deploy](./tflocal-deploy)
 
-# Setup LocalStack
+## Setup LocalStack
 
 The Setup LocalStack action enables you to set up LocalStack in your GitHub Actions workflow. You can specify the Docker image tag, whether to use LocalStack Pro, and any configuration variables for LocalStack. For more information, see the Setup LocalStack [README](./setup-localstack/README.md).
 
-# Setup Local Tools
+## Setup Local Tools
 
 The Setup Local Tools action assists you in setting up several local development tools, including awslocal, terraform, and terraform-local. You can specify the versions and credentials for Terraform and whether to install a wrapper for Terraform calls. For more information, see the Setup Local Tools [README](./setup-local-tools/README.md).
 
