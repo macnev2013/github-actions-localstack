@@ -11,9 +11,9 @@ inputs:
     description: 'Path to terraform directory'
     required: false
     default: 'terraform'
-  github-token:
-    description: 'GitHub token'
-    required: true
+  # github-token:
+  #   description: 'GitHub token'
+  #   required: true
 
 runs:
   using: "composite"
@@ -34,7 +34,7 @@ runs:
     - id: pr-comment
       uses: actions/github-script@v6
       with:
-        github-token: ${{ inputs.github-token }}
+        # github-token: ${{ inputs.github-token }}
         script: |
           github.rest.issues.createComment({
             issue_number: context.issue.number,
