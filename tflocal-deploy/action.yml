@@ -37,29 +37,37 @@ runs:
         github-token: ${{ inputs.github-token }}
         script: |
           const tfDeploymentStatus = "${{ steps.tf-deploy.outcome }}"
-          let message = ```
-          Terraform Deployment Completed on **LocalStack**.
-
-          **Deployment Status**
-          ```
+          let message
           if (tfDeploymentStatus === 'success') {
-            message = message + ```
+            message = """
+            Terraform Deployment Completed on **LocalStack**.
+
+            **Deployment Status**
+
             | Deployment Status | ![LocalStack](https://img.shields.io/badge/LocalStack-Deployed-green) |
             |-------------------|-----------------------------------------------------------------------|
             | Notes             | Terraform files deployed successfully on LocalStack.                  |
-            ```
+            """
           } else if (tfDeploymentStatus === 'failure') {
-            message = ```
+            message = """
+            Terraform Deployment Completed on **LocalStack**.
+
+            **Deployment Status**
+            
             | Deployment Status | ![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) |
             |-------------------|-------------------------------------------------------------------|
             | Notes             | Terraform files could not deploy successfully on LocalStack.      |
-            ```
+            """
           } else {
-            message = message + ```
+            message = """
+            Terraform Deployment Completed on **LocalStack**.
+
+            **Deployment Status**
+            
             | Deployment Status | ![LocalStack](https://img.shields.io/badge/LocalStack-Error-yellow) |
             |-------------------|---------------------------------------------------------------------|
             | Notes             | Unable to determine deployment status.                              |
-            ```
+            """
           }
 
           const issue_number = context.issue.number;
