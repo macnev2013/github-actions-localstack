@@ -40,33 +40,23 @@ runs:
           let message
           if (tfDeploymentStatus === 'success') {
             message = `
-            Terraform Deployment Completed on **LocalStack**.
+            ## Terraform Local Validation
 
-            **Deployment Status**
+            | Deployment Status | Notes |
+            |---|---|
+            | ![LocalStack](https://img.shields.io/badge/LocalStack-Passed-green) | Successfully deployed the changes on **LocalStack** ✅ |
 
-            | Deployment Status | ![LocalStack](https://img.shields.io/badge/LocalStack-Deployed-green) |
-            |-------------------|-----------------------------------------------------------------------|
-            | Notes             | Terraform files deployed successfully on LocalStack.                  |
-            `
-          } else if (tfDeploymentStatus === 'failure') {
-            message = `
-            Terraform Deployment Completed on **LocalStack**.
-
-            **Deployment Status**
-            
-            | Deployment Status | ![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) |
-            |-------------------|-------------------------------------------------------------------|
-            | Notes             | Terraform files could not deploy successfully on LocalStack.      |
+            🔍  See more information about LocalStack github action [here](https://github.com/macnev2013/github-actions-localstack).
             `
           } else {
             message = `
-            Terraform Deployment Completed on **LocalStack**.
+            ## Terraform Local Validation
 
-            **Deployment Status**
-            
-            | Deployment Status | ![LocalStack](https://img.shields.io/badge/LocalStack-Error-yellow) |
-            |-------------------|---------------------------------------------------------------------|
-            | Notes             | Unable to determine deployment status.                              |
+            | Deployment Status | Notes |
+            |---|---|
+            | ![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) | Failed to deploy the changes on **LocalStack** ❌ |
+
+            🔍  See more information about LocalStack github action [here](https://github.com/macnev2013/github-actions-localstack).
             `
           }
 
