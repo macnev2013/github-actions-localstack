@@ -40,21 +40,21 @@ runs:
           let message
           if (tfDeploymentStatus === 'success') {
             message = `
-            ## Terraform Local Validation
+            ## LocalStack Terraform Deployment
 
             | Deployment Status | Notes |
             |:---|:---|
-            | ![LocalStack](https://img.shields.io/badge/LocalStack-Passed-green) | Successfully deployed the changes on **LocalStack** ✅ |
+            | ![LocalStack](https://img.shields.io/badge/LocalStack-Passed-green) | Successfully deployed the changes on [**LocalStack**](https://localstack.cloud) ✅ |
 
             🔍  See more information about LocalStack github action [here](https://github.com/macnev2013/github-actions-localstack).
             `
           } else {
             message = `
-            ## Terraform Local Validation
+            ## LocalStack Terraform Deployment
 
             | Deployment Status | Notes |
             |:---|:---|
-            | ![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) | Failed to deploy the changes on **LocalStack** ❌ |
+            | ![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) | Failed to deploy the changes on [**LocalStack**](https://localstack.cloud) ❌ |
 
             🔍  See more information about LocalStack github action [here](https://github.com/macnev2013/github-actions-localstack).
             `
