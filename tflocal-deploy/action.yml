@@ -43,7 +43,7 @@ runs:
             ## Terraform Local Validation
 
             | Deployment Status | Notes |
-            |---|---|
+            |:---|:---|
             | ![LocalStack](https://img.shields.io/badge/LocalStack-Passed-green) | Successfully deployed the changes on **LocalStack** ✅ |
 
             🔍  See more information about LocalStack github action [here](https://github.com/macnev2013/github-actions-localstack).
@@ -53,7 +53,7 @@ runs:
             ## Terraform Local Validation
 
             | Deployment Status | Notes |
-            |---|---|
+            |:---|:---|
             | ![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) | Failed to deploy the changes on **LocalStack** ❌ |
 
             🔍  See more information about LocalStack github action [here](https://github.com/macnev2013/github-actions-localstack).
