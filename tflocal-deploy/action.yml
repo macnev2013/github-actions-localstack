@@ -36,12 +36,22 @@ runs:
       with:
         github-token: ${{ inputs.github-token }}
         script: |
+          const tfDeploymentStatus = "${{ steps.tf-deploy.outcome }}"
+          let message
+          if (tfDeploymentStatus === 'success') {
+            message = '![LocalStack](https://img.shields.io/badge/LocalStack-Deployed-green) Terraform files deployed successfully on LocalStack.'
+          } else if (tfDeploymentStatus === 'failure') {
+            message = '![LocalStack](https://img.shields.io/badge/LocalStack-Failed-red) Terraform files deployed successfully on LocalStack.'
+          } else {
+            message = 'Unable to determine deployment status.'
+          }
+
           const issue_number = context.issue.number;
           const repo = context.repo;
           await github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `**it Worked**`
+            body: message
           })
       if: ${{ github.event_name == 'pull_request' }}
